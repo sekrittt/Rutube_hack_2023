@@ -11,6 +11,7 @@ from transliterate import translit
 # nltk.download("punkt", download_dir='nltk/')
 
 
+
 def nltk_remove_other_model_but_russian(directory: str | pathlib.Path):
     """Удалить все языки кроме русского
 
@@ -37,7 +38,7 @@ class SeleroText:
     #: Флаг который используется для чтения модели nltk единожды
     IF_INIT = False
     #: Путь для хранения моделей nltk
-    download_dir = pathlib.Path(__file__).parent.parent / "models/nltk_store"
+    download_dir = pathlib.Path(__file__).parent.parent.parent / "models/nltk_store"
     ###
     #
     #: Максимальное количество сиголов в куске текста. Если больше, то это уже новый кусок
@@ -58,6 +59,7 @@ class SeleroText:
             nltk.download(
                 "punkt",
                 download_dir=self.download_dir,
+                quiet=True
             )
             if self.to_language in ("ru"):
                 # Удалить все модели языки кроме русского языка

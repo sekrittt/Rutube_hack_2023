@@ -212,6 +212,7 @@ class Speaker(SpeakerBase):
         self._join_mp3(
             list_path_to_audio,
             output_file=output_file,
+            _logging=self.logging
         )
 
         return output_file
@@ -222,7 +223,7 @@ class Speaker(SpeakerBase):
     #
 
     @staticmethod
-    def _join_mp3(filenames: list[pathlib.Path], output_file: pathlib.Path):
+    def _join_mp3(filenames: list[pathlib.Path], output_file: pathlib.Path, _logging=True):
         """Объединить куски mp3 в единое mp3 файл
 
         filenames   : Список кусков файлов с MP3
@@ -238,9 +239,11 @@ class Speaker(SpeakerBase):
 
             # Экспортируем объединенный файл в MP3
             combined.export(output_file, format="mp3")
-            print("Build___Mp3: 0 \t| ", output_file)
+            if _logging:
+                print("Build___Mp3: 0 \t| ", output_file)
         else:
-            print("Cache___Mp3: 0 \t| ", output_file)
+            if _logging:
+                print("Cache___Mp3: 0 \t| ", output_file)
 
     def _chunks_synthes(
         self,
@@ -287,8 +290,10 @@ class Speaker(SpeakerBase):
                     sound = AudioSegment.from_wav(buffer)
                     # сохранить в mp3 файл
                     sound.export(path_to_audio, format="mp3")
-                tqdm.write(f"Build_Chunk: {i} \t| {path_to_audio}")
+                if self.logging:
+                    tqdm.write(f"Build_Chunk: {i} \t| {path_to_audio}")
             else:
-                tqdm.write(f"Cache_Chunk: {i} \t| {path_to_audio}")
+                if self.logging:
+                    tqdm.write(f"Cache_Chunk: {i} \t| {path_to_audio}")
 
             yield path_to_audio
