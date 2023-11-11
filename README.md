@@ -64,10 +64,10 @@ python main.py --input <path_to_video> --output <output_dir> --target-language <
 | torch | 2.1.0+cu118 |
 | nltk | 3.8.1 |
 | scipy | 1.11.3 |
+| onnxruntime | 1.16.2 |
 | onnxruntime-gpu | 1.16.2 |
 | sounddevice | 0.4.6 |
 | silero | 0.4.1 |
 | num2words | 0.5.13 |
-| transliterate | 1.10.2 |
 | openai-whisper | 20231106 |
 | argostranslate | 1.9.1 |
