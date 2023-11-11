@@ -1,0 +1,14 @@
+pydub
+torch
+torchvision
+torchaudio
+nltk
+scipy
+onnxruntime
+sounddevice
+silero
+num2words
+transliterate
+openai-whisper
+wget
+argostranslate

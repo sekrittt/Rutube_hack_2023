@@ -1,0 +1,14 @@
+pydub
+torch --index-url https://download.pytorch.org/whl/cu118
+torchvision --index-url https://download.pytorch.org/whl/cu118
+torchaudio --index-url https://download.pytorch.org/whl/cu118
+nltk
+scipy
+onnxruntime-gpu
+sounddevice
+silero
+num2words
+transliterate
+openai-whisper
+wget
+argostranslate
