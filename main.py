@@ -1,10 +1,9 @@
 # Импорт библиотек
 import logging
 import shutil
-from tkinter import NO
 from pydub import AudioSegment
 from pydub.silence import detect_silence
-from typing import Literal, Optional, Union
+from typing import Literal, Optional
 import os
 import whisper
 import subprocess
@@ -23,6 +22,11 @@ from custom_modules.speaker.lib_speak import Speaker
 model_sr: whisper.Whisper
 device: Literal['cpu', 'cuda'] = 'cpu'
 Langs = Literal['en', 'fr']
+
+speakers = {
+    'en': 'en_1',
+    'fr': 'fr_1'
+}
 
 
 def path_to(*els: str, base_path: Optional[str] = None) -> str:
@@ -192,7 +196,11 @@ def synthesize_speech(*, text: str, file_name: str, output_path: str, lang: Lang
         os.makedirs(out_mp3_path, exist_ok=True)
 
         speaker = Speaker(model_id=f"v3_{lang}", language=lang,  # type: ignore
+<<<<<<< Updated upstream
                           speaker=f"random", device=device, logging=False)  # type: ignore
+=======
+                          speaker=speakers[lang], device=device, logging=False)  # type: ignore
+>>>>>>> Stashed changes
         audio_file_path: str = speaker.to_mp3(
             text=text, name_text=file_name, sample_rate=48000, audio_dir=out_mp3_path, speed=1.0)  # type: ignore
 
