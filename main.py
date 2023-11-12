@@ -408,7 +408,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--output', type=str, help="полный путь до папки в которой будут расположены все выходные данные")
     parser.add_argument(
-        '--target-language', type=str, required=False, choices=['en', 'fr'], default='en', help="код языка на который нужно перевести видео (по умолчанию - en)")
+        '--target-language', type=str, required=False, default='en', help="код языка на который нужно перевести видео (по умолчанию - en)")
     parser.add_argument(
         '--initial-language', type=str, required=False, default='ru', help="код языка в видео (по умолчанию - ru)")
     parser.add_argument(
