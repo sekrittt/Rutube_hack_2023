@@ -192,7 +192,7 @@ def synthesize_speech(*, text: str, file_name: str, output_path: str, lang: Lang
         os.makedirs(out_mp3_path, exist_ok=True)
 
         speaker = Speaker(model_id=f"v3_{lang}", language=lang,  # type: ignore
-                          speaker=f"{lang}_1", device=device, logging=False)  # type: ignore
+                          speaker=f"random", device=device, logging=False)  # type: ignore
         audio_file_path: str = speaker.to_mp3(
             text=text, name_text=file_name, sample_rate=48000, audio_dir=out_mp3_path, speed=1.0)  # type: ignore
 
