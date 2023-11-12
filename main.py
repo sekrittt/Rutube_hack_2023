@@ -9,15 +9,16 @@ import os
 import whisper
 import subprocess
 from colorama import Fore
+from time import process_time
 
 from argparse import ArgumentParser
+from argostranslate import package as arg_package
+from argostranslate import translate as arg_translate
 
 # Откорректированные модули
 from custom_modules.audio_separator import Separator
 from custom_modules.speaker.lib_speak import Speaker
 
-from argostranslate import package as arg_package
-from argostranslate import translate as arg_translate
 
 model_sr: whisper.Whisper
 device: Literal['cpu', 'cuda'] = 'cpu'
@@ -335,6 +336,23 @@ def replace_audio_in_video(*, audio_file: str, video_file: str) -> Optional[str]
         return None
 
 
+def _timeit(func):
+    """Декоратор для замера времени выполнения функции"""
+
+    def wrapper(*args, **kwargs):
+        global logging
+        start_time = process_time()
+        result = func(*args, **kwargs)
+        end_time = process_time()
+        if logging:
+            print(
+                f"Время выполнения функции '{func.__name__}': {end_time - start_time} секунд"
+            )
+        return result
+
+    return wrapper
+
+@_timeit
 def main(*, input_path: str, output_path: str, from_language: Literal['ru'] = 'ru', to_language: Langs) -> str:
     if not load_models():
         return Fore.RED+"Ошибка: Модель искусственного интеллекта не может быть загружена."
