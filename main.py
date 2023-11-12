@@ -57,7 +57,7 @@ def get_audio(*, input_path: str, output_dir: str) -> Optional[str]:
     print(Fore.BLUE+"Извлечение аудио из видео..."+Fore.WHITE)
     try:
         output_path = os.path.join(output_dir, '.'.join(
-            input_path.split('.')[:-1])+'.wav')
+            os.path.basename(input_path).split('.')[:-1])+'.wav')
         subprocess.run(['ffmpeg', '-i', input_path, '-vn', '-acodec',
                         'pcm_s16le', '-ar', '44100', '-ac', '1', output_path, '-y', '-loglevel', 'quiet'], check=True)
         print(Fore.BLUE+f"Aудио успешно извлечено: {output_path}"+Fore.WHITE)
